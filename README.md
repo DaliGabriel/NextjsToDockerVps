@@ -1,37 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started with the image creation
 
-First, run the development server:
+First, login into a docker using your user github name and the token(classic) as password:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+docker login ghcr.io
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next, build the image locally with the same structure only change the name of the image:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+docker build . --platform linux/amd64 -t ghcr.io/github-name/image-name
+```
+And then, upload the image to your github packages:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+ docker push ghcr.io/github-name/image-name
+```
 
-## Learn More
+## Continue with the deployment on the server
 
-To learn more about Next.js, take a look at the following resources:
+First, login into a docker using your user github name and the token(classic) as password:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+docker login ghcr.io
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Next, download the update docker image:
 
-## Deploy on Vercel
+```
+sudo docker pull ghcr.io/github-name/image-name:latest
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+keep, looking our docker active process:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+sudo docker ps
+```
+
+Continue, stopping the docker container:
+
+```
+sudo docker stop {CONTAINER ID or NAMES}
+```
+
+Remove all the stopper containers
+
+```
+sudo docker container prune
+```
+
+If you want to remove an specific image
+
+```
+sudo docker rmi {IMAGE ID}
+```
+
+Remove all unused images keep the lastest
+
+```
+sudo docker image prune
+```
+
+Remove all unused images keep the lastest
+
+```
+sudo docker run -d -p 3000:3000 ghcr.io/github-name/image-name:latest
+```
+
+
+
 # NextjsToDockerVps
