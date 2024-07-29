@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.GIT_TOKEN }}
 
       - name: Build Docker Image
-        run: docker build . --platform linux/amd64 -t ghcr.io/${{ github.repository_owner }}/nextjs-docker-example
+        run: docker build . --platform linux/amd64 -t ghcr.io/daligabriel/nextjs-docker-example
 
       - name: Push Docker Image
-        run: docker push ghcr.io/${{ github.repository_owner }}/nextjs-docker-example
+        run: docker push ghcr.io/daligabriel/nextjs-docker-example
