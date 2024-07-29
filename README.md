@@ -62,7 +62,7 @@ Remove all unused images keep the lastest
 sudo docker image prune
 ```
 
-Remove all unused images keep the lastest
+Run the image
 
 ```
 sudo docker run -d -p 3000:3000 ghcr.io/github-name/image-name:latest
